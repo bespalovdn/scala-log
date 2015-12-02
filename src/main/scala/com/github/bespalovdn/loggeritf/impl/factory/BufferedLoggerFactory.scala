@@ -9,14 +9,14 @@ private [impl]
 object BufferedLoggerFactory extends LoggerFactory
 {
     override def newLogger(clazz: Class[_], mdc: Map[String, String]): Logger = synchronized{
-        factory.newLogger(clazz, mdc)
+        factory.map(_.newLogger(clazz, mdc)).getOrElse(new BufferedLogger(clazz, mdc, append))
     }
 
     override def update(newFactory: LoggerFactory): Unit = synchronized {
-        factory = newFactory
+        factory = Some(newFactory)
         // write all the logs using new logger factory:
         buffer foreach {writer =>
-            val logger = factory.newLogger(writer.clazz, writer.mdc)
+            val logger = newFactory.newLogger(writer.clazz, writer.mdc)
             writer.write(logger)
         }
         buffer.clear()
@@ -24,7 +24,7 @@ object BufferedLoggerFactory extends LoggerFactory
 
     private def append(writer: BufferedLogWriter): Unit = synchronized{ buffer += writer }
 
-    private var factory: LoggerFactory = this
+    private var factory: Option[LoggerFactory] = None
     private var buffer = ArrayBuffer.empty[BufferedLogWriter]
 }
 
