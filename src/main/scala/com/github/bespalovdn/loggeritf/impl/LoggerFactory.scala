@@ -3,7 +3,7 @@ package com.github.bespalovdn.loggeritf.impl
 import java.util.concurrent.atomic.AtomicReference
 
 import com.github.bespalovdn.loggeritf.Logger
-import com.github.bespalovdn.loggeritf.impl.factory.BufferLoggerFactory
+import com.github.bespalovdn.loggeritf.impl.factory.BufferedLoggerFactory
 
 trait LoggerFactory
 {
@@ -16,5 +16,5 @@ object LoggerFactory
     def apply(): LoggerFactory = factory.get()
     def update(f: LoggerFactory): Unit = factory.set(f)
 
-    private val factory: AtomicReference[LoggerFactory] = new AtomicReference(BufferLoggerFactory)
+    private val factory: AtomicReference[LoggerFactory] = new AtomicReference(BufferedLoggerFactory)
 }
