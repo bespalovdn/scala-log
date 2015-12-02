@@ -8,4 +8,3 @@ scalacOptions in ThisBuild ++= Seq(
     "-language:postfixOps",
     "-unchecked"
 )
-
