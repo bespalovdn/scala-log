@@ -119,7 +119,7 @@ class BufferedLogger(clazz: Class[_],
         override def mdc: Map[String, String] = self.mdc
         override def clazz: Class[_] = self.clazz
         override def evaluate(): Unit = eval()
-        override def write(l: Logger): Unit = fn(l)
+        override def write(l: Logger): Unit = fn(l) //TODO: add MDC handling
     })
 }
 
