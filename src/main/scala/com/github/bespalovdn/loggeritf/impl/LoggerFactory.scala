@@ -16,5 +16,5 @@ object LoggerFactory
     def apply(): LoggerFactory = factory.get()
     def update(f: LoggerFactory): Unit = factory.set(f)
 
-    private val factory: AtomicReference[LoggerFactory] = new AtomicReference(BufferedLoggerFactory)
+    private lazy val factory: AtomicReference[LoggerFactory] = new AtomicReference(BufferedLoggerFactory)
 }
