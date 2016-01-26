@@ -12,7 +12,7 @@ import scala.collection.mutable.ArrayBuffer
 private [impl]
 object BufferedLoggerFactory extends LoggerFactory
 {
-    override def newLogger(clazz: Class[_], mdc: Map[String, String]): Logger = synchronized{
+    override def newLogger(clazz: Class[_], mdc: Map[String, String] = null): Logger = synchronized{
         factory.map(_.newLogger(clazz, mdc)).getOrElse(new BufferedLogger(clazz, mdc, append))
     }
 
