@@ -8,7 +8,7 @@ trait DynamicLogger extends LoggerProvider
 {
     override def logger: Logger = createLogger(loggerClass)
 
-    override def loggerT[A](implicit classTag: ClassTag[A]): Logger = createLogger(classTag.runtimeClass)
+    override def loggerT[T : ClassTag]: Logger = createLogger(implicitly[ClassTag[T]].runtimeClass)
 
     def loggerClass: Class[_] = getClass
 
