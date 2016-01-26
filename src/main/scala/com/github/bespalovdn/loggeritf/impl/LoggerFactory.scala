@@ -14,7 +14,7 @@ trait LoggerFactory
 object LoggerFactory
 {
     def apply(): LoggerFactory = factory.get()
-    def update(f: LoggerFactory): Unit = factory.set(f)
+    def initialize(f: LoggerFactory): Unit = factory.set(f)
 
     private lazy val factory: AtomicReference[LoggerFactory] = new AtomicReference(BufferedLoggerFactory)
 }
