@@ -4,7 +4,7 @@ import com.github.bespalovdn.loggeritf.impl.LoggerFactory
 
 import scala.reflect.ClassTag
 
-trait LoggerSupport extends LoggerProvider
+trait DynamicLogger extends LoggerProvider
 {
     override def logger: Logger = createLogger(loggerClass)
 
