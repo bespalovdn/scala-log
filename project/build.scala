@@ -24,7 +24,7 @@ object TheBuild extends Build {
         // The Nexus repo we're publishing to.
         publishTo := {
             val nexus = "https://oss.sonatype.org/"
-            if (version.value.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
+            if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
             else Some("releases"  at nexus + "service/local/staging/deploy/maven2")
         },
         // Maven central cannot allow other repos.  We're ok here because the artifacts we
