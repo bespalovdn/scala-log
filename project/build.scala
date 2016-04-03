@@ -25,24 +25,23 @@ object TheBuild extends Build {
         publishTo := {
             val nexus = "https://oss.sonatype.org/"
             if (version.value.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
-            else                             Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+            else Some("releases"  at nexus + "service/local/staging/deploy/maven2")
         },
         // Maven central cannot allow other repos.  We're ok here because the artifacts we
         // we use externally are *optional* dependencies.
-        pomIncludeRepository := { x => false },
-
+        pomIncludeRepository := { _ => false },
         // Maven central wants some extra metadata to keep things 'clean'.
-        homepage := Some(url("http://jsuereth.com/scala-arm")),
         licenses += "BSD-Style" -> url("http://www.opensource.org/licenses/bsd-license.php"),
-        scmInfo := Some(ScmInfo(url("http://github.com/jsuereth/scala-arm"), "scm:git@github.com:jsuereth/scala-arm.git")),
+        scmInfo := Some(ScmInfo(url("https://github.com/bespalovdn/scala-log"), "scm:git@github.com:bespalovdn/scala-log.git")),
         pomExtra := (
             <developers>
                 <developer>
-                    <id>jsuereth</id>
-                    <name>Josh Suereth</name>
-                    <url>http://jsuereth.com</url>
+                    <id>bespalovdn</id>
+                    <name>Dmitry Bespalov</name>
+                    <email>bespalovdn@gmail.com/</email>
                 </developer>
-            </developers>),
+            </developers>
+        ),
         ReleasePlugin.ReleaseKeys.releaseProcess := Seq[ReleaseStep](
             checkSnapshotDependencies,
             inquireVersions,
