@@ -9,4 +9,9 @@ scalacOptions in ThisBuild ++= Seq(
     "-unchecked"
 )
 
+resolvers ++= Seq(
+    "java.net repo" at "http://download.java.net/maven/2/",
+    "sbt-plugin-releases" at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"
+)
+
 libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.12"

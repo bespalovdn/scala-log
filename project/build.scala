@@ -1,0 +1,70 @@
+import com.typesafe.sbt.pgp.PgpKeys
+import sbt.Keys._
+import sbt._
+import sbtrelease.ReleasePlugin._
+import sbtrelease.ReleaseStateTransformations._
+import sbtrelease._
+import xerial.sbt.Sonatype._
+
+object TheBuild extends Build {
+
+    lazy val arm = Project("scala-log", file(".")).
+        settings(
+            organization := "com.github.bespalovdn",
+            name := "scala-log"
+        ).
+        settings(releaseSettings:_*).
+        settings(sonatypeSettings:_*).
+        settings(publishSettings:_*)
+
+    def publishSettings: Seq[Setting[_]] = Seq(
+        // If we want on maven central, we need to be in maven style.
+        publishMavenStyle := true,
+        publishArtifact in Test := false,
+        // The Nexus repo we're publishing to.
+        publishTo := {
+            val nexus = "https://oss.sonatype.org/"
+            if (version.value.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
+            else                             Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+        },
+        // Maven central cannot allow other repos.  We're ok here because the artifacts we
+        // we use externally are *optional* dependencies.
+        pomIncludeRepository := { x => false },
+
+        // Maven central wants some extra metadata to keep things 'clean'.
+        homepage := Some(url("http://jsuereth.com/scala-arm")),
+        licenses += "BSD-Style" -> url("http://www.opensource.org/licenses/bsd-license.php"),
+        scmInfo := Some(ScmInfo(url("http://github.com/jsuereth/scala-arm"), "scm:git@github.com:jsuereth/scala-arm.git")),
+        pomExtra := (
+            <developers>
+                <developer>
+                    <id>jsuereth</id>
+                    <name>Josh Suereth</name>
+                    <url>http://jsuereth.com</url>
+                </developer>
+            </developers>),
+        ReleasePlugin.ReleaseKeys.releaseProcess := Seq[ReleaseStep](
+            checkSnapshotDependencies,
+            inquireVersions,
+            runClean,
+            runTest,
+            setReleaseVersion,
+            commitReleaseVersion,
+            tagRelease,
+            ReleaseStep(
+                action = { state =>
+                    val extracted = Project extract state
+                    extracted.runAggregated(PgpKeys.publishSigned in Global in extracted.get(thisProjectRef), state)
+                },
+                enableCrossBuild = true
+            ),
+            ReleaseStep{ state =>
+                val extracted = Project extract state
+                extracted.runAggregated(SonatypeKeys.sonatypeReleaseAll in Global in extracted.get(thisProjectRef), state)
+            },
+            setNextVersion,
+            commitNextVersion,
+            pushChanges
+        )
+    )
+}
