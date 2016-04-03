@@ -1,4 +1,4 @@
-name := "scala-logger-itf_2.10"
+name := "scala-log"
 
 scalaVersion := "2.10.5"
 

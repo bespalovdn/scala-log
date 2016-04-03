@@ -2,8 +2,8 @@ package com.github.bespalovdn.loggeritf
 
 import scala.reflect.ClassTag
 
-trait LoggerProvider
+trait LoggerSupport
 {
-    def logger: Logger
+    implicit def logger: Logger
     def loggerT[T : ClassTag]: Logger
 }

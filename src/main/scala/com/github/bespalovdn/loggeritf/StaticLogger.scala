@@ -4,7 +4,7 @@ import com.github.bespalovdn.loggeritf.impl.LoggerFactory
 
 import scala.reflect.ClassTag
 
-trait StaticLogger extends LoggerProvider
+trait StaticLogger extends LoggerSupport
 {
     val loggerClass: Class[_] = getClass
     val loggerMDC: Map[String, String] = Map.empty
