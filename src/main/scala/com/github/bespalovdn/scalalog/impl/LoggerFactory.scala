@@ -1,9 +1,9 @@
-package com.github.bespalovdn.loggeritf.impl
+package com.github.bespalovdn.scalalog.impl
 
 import java.util.concurrent.atomic.AtomicReference
 
-import com.github.bespalovdn.loggeritf.Logger
-import com.github.bespalovdn.loggeritf.impl.factory.BufferedLoggerFactory
+import com.github.bespalovdn.scalalog.Logger
+import com.github.bespalovdn.scalalog.impl.factory.BufferedLoggerFactory
 
 trait LoggerFactory
 {

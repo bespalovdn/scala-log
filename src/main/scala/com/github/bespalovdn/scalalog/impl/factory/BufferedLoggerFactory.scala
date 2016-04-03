@@ -1,7 +1,7 @@
-package com.github.bespalovdn.loggeritf.impl.factory
+package com.github.bespalovdn.scalalog.impl.factory
 
-import com.github.bespalovdn.loggeritf.Logger
-import com.github.bespalovdn.loggeritf.impl.LoggerFactory
+import com.github.bespalovdn.scalalog.Logger
+import com.github.bespalovdn.scalalog.impl.LoggerFactory
 
 import scala.collection.mutable.ArrayBuffer
 

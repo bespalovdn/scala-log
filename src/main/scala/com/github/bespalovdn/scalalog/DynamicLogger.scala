@@ -1,6 +1,6 @@
-package com.github.bespalovdn.loggeritf
+package com.github.bespalovdn.scalalog
 
-import com.github.bespalovdn.loggeritf.impl.LoggerFactory
+import com.github.bespalovdn.scalalog.impl.LoggerFactory
 
 import scala.reflect.ClassTag
 

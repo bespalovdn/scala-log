@@ -1,4 +1,4 @@
-package com.github.bespalovdn.loggeritf
+package com.github.bespalovdn.scalalog
 
 import scala.reflect.ClassTag
 

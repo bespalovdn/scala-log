@@ -1,9 +1,9 @@
-package com.github.bespalovdn.loggeritf.impl.factory
+package com.github.bespalovdn.scalalog.impl.factory
 
 import java.util.{Map => JMap}
 
-import com.github.bespalovdn.loggeritf.Logger
-import com.github.bespalovdn.loggeritf.impl.LoggerFactory
+import com.github.bespalovdn.scalalog.Logger
+import com.github.bespalovdn.scalalog.impl.LoggerFactory
 import org.slf4j.{LoggerFactory => NativeSlf4jLoggerFactory, MDC}
 
 import scala.collection.JavaConverters._
