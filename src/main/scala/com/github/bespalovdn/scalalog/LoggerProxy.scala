@@ -2,8 +2,10 @@ package com.github.bespalovdn.scalalog
 
 import scala.reflect.ClassTag
 
-abstract class LoggerProxy(source: LoggerSupport) extends LoggerSupport
+trait LoggerProxy extends LoggerSupport
 {
-    override implicit def logger: Logger = source.logger
-    override def loggerT[T: ClassTag]: Logger = source.loggerT
+    def loggerSource: LoggerSupport
+
+    override implicit def logger: Logger = loggerSource.logger
+    override def loggerT[T: ClassTag]: Logger = loggerSource.loggerT
 }
