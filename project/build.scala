@@ -39,6 +39,7 @@ object TheBuild extends Build {
                     <id>bespalovdn</id>
                     <name>Dmitry Bespalov</name>
                     <email>bespalovdn@gmail.com/</email>
+                    <url>https://github.com/bespalovdn</url>
                 </developer>
             </developers>
         ),
