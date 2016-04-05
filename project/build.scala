@@ -8,10 +8,11 @@ import xerial.sbt.Sonatype._
 
 object TheBuild extends Build {
 
-    lazy val arm = Project("scala-log", file(".")).
+    lazy val scalaLog = Project("scala-log", file(".")).
         settings(
             organization := "com.github.bespalovdn",
-            name := "scala-log"
+            name := "scala-log",
+            description := "Logging facilities for Scala projects."
         ).
         settings(releaseSettings:_*).
         settings(sonatypeSettings:_*).
