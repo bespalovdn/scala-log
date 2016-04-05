@@ -31,6 +31,7 @@ object TheBuild extends Build {
         // we use externally are *optional* dependencies.
         pomIncludeRepository := { _ => false },
         // Maven central wants some extra metadata to keep things 'clean'.
+        homepage := Some(url("https://github.com/bespalovdn/scala-log")),
         licenses += "BSD-Style" -> url("http://www.opensource.org/licenses/bsd-license.php"),
         scmInfo := Some(ScmInfo(url("https://github.com/bespalovdn/scala-log"), "scm:git@github.com:bespalovdn/scala-log.git")),
         pomExtra := (
@@ -39,7 +40,6 @@ object TheBuild extends Build {
                     <id>bespalovdn</id>
                     <name>Dmitry Bespalov</name>
                     <email>bespalovdn@gmail.com/</email>
-                    <url>https://github.com/bespalovdn</url>
                 </developer>
             </developers>
         ),
