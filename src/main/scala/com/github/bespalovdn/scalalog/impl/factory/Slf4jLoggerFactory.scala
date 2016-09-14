@@ -48,10 +48,14 @@ object Slf4jLoggerFactory extends LoggerFactory
             }else{
                 try {
                     isMdcSet.set(true)
-                    MDC.setContextMap(mdc)
+                    if (!mdc.isEmpty) {
+                        MDC.setContextMap(mdc)
+                    }
                     logFn
                 }finally{
-                    MDC.clear()
+                    if (!mdc.isEmpty) {
+                        MDC.clear()
+                    }
                     isMdcSet.set(false)
                 }
             }
